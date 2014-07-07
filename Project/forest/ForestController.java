@@ -1,5 +1,12 @@
 package forest;
 
-public class ForestController {
+
+
+public class ForestController extends mvc.Controller
+{
+	public ForestController()
+	{
+		super();
+	}
 
 }

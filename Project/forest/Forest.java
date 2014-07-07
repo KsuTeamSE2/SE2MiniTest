@@ -1,5 +1,14 @@
 package forest;
 
-public class Forest {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Forest
+{
+
+	public Forest()
+	{
+
+	}
 
 }

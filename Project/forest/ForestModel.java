@@ -1,5 +1,6 @@
 package forest;
 
-public class ForestModel {
+public class ForestModel extends mvc.Model
+{
 
 }

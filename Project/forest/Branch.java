@@ -1,5 +1,6 @@
 package forest;
 
-public class Branch {
+public class Branch
+{
 
 }
