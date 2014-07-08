@@ -20,7 +20,7 @@ public class Load
 	/**
 	 *読み込むテキストのファイルパス
 	 */
-	String aFilePath = "/NF/home/g120/g1244785/Desktop/forest.txt";
+	String aFilePath = "./TreeText/tree.txt";
 	/**
 	 *テキストから読み込んだ文字列
 	 */
@@ -55,6 +55,28 @@ public class Load
 				error.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 *テキストファイルからrootの名前のみ取り出し応答
+	 *@return roots
+	 */
+	public ArrayList<String> loadRoot()
+	{
+		ArrayList<String> roots = new ArrayList<String>();
+		for(String aString : stringLines)
+		{
+			if(aString.matches("^[A-Za-z1-9].*[^:]$"))
+			{
+				
+				roots.add(aString);
+			}
+			else if(aString.equals("nodes:"))
+			{
+				break;
+			}
+		}
+		return roots;
 	}
 	/**
 	 *テキストファイルからノードを取り出し応答
