@@ -30,7 +30,6 @@ public class Node
 
 	/**
 	 *名前と数字を受け取るコンストラクタ
-	 *7/2正常
 	 *@param aName ノードの名前
 	 *@param aNumber ノードの整理番号
 	 */
@@ -41,6 +40,17 @@ public class Node
 	}
 
 	/**
+	 *文字列を受け取るコンストラクタ
+	 *@pram aString ノードの名前と番号込みの文字列
+	 */
+	public Node(String aNodeString)
+	{
+		String[] strings = aNodeString.split(",.");
+		this.nodeNumber = Integer.valueOf(strings[0]);
+		this.nodeName = strings[1];
+	}
+
+	/**
 	 *子ノードを追加する
 	 *@param aChild このノードの子ノード
 	 */
@@ -48,6 +58,7 @@ public class Node
 	{
 		this.nodeChildren.add(aChild);
 	}
+
 	/**
 	 *親ノードを追加する
 	 *7/2不必要な可能性があります
@@ -59,7 +70,7 @@ public class Node
 	}
 
 	/**
-	 *ノードの名前を応答
+	 *ノードの名前を返答する
 	 *@return nodeName
 	 */
 	public String getNodeName()
@@ -67,10 +78,22 @@ public class Node
 		return this.nodeName;
 	}
 	/**
-	 *
+	 *ノードの番号を返答する
 	 *@return nodeNumber
 	 */
+	public int getNodeNumber()
+	{
+		return this.nodeNumber;
+	}
 
+	/**
+	 *
+	 */
+	public Node getParentNode()
+	{
+		return this.nodeParent;
+	}
 	
-
+	
+	
 }

@@ -1,6 +1,10 @@
 package forest;
 
-public class ForestView mvc.View
+public class ForestView extends mvc.View
 {
-
+	public ForestView()
+	{
+		super(null);
+	}
 }
+
