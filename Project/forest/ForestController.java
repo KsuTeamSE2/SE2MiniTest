@@ -1,6 +1,6 @@
 package forest;
 
-
+import java.awt.event.MouseEvent;
 
 public class ForestController extends mvc.Controller
 {

@@ -43,7 +43,7 @@ public class Tree
 	 */
 	public void createTree(Branch aBranch)
 	{
-		
+		branches.add(aBranch);
 	}
 	
 }

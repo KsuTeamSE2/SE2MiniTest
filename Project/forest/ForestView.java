@@ -1,5 +1,7 @@
 package forest;
 
+import java.awt.Point;
+
 public class ForestView extends mvc.View
 {
 	/**
@@ -30,11 +32,11 @@ public class ForestView extends mvc.View
 	 * 
 	 * @return Point
 	 */
-	public Point getPoint(){}
+	public Point getPoint(){return null;}
 
 	/**
 	 * 
 	 */
-	public Point getNewPoint(){}
+	public Point getNewPoint(){return null;}
 }
 
