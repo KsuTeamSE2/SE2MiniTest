@@ -2,9 +2,39 @@ package forest;
 
 public class ForestView extends mvc.View
 {
-	public ForestView()
+	/**
+	 * 木構造のモデル
+	 */
+	private ForestModel aForestModel;
+	/**
+	 * コンストラクタ
+	 * @param aModel モデル
+	 */
+	public ForestView(ForestModel aModel)
 	{
-		super(null);
+		super(aModel);
 	}
+	
+	/**
+	 * 
+	 */
+	public void paintComponet(){}
+	
+	/**
+	 * 
+	 */
+	public void update(){}
+	
+	
+	/**
+	 * 
+	 * @return Point
+	 */
+	public Point getPoint(){}
+
+	/**
+	 * 
+	 */
+	public Point getNewPoint(){}
 }
 

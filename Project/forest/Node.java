@@ -4,29 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 /**
  *木構造に必要なノードのオブジェクト
- *@author 徳梅慎也
+ *@author TOKUUME Shinya
  */
 public class Node
 {
 	/**
 	 *子ノード
 	 */
-	public List<Node> nodeChildren = new ArrayList<Node>();
+	private List<Node> nodeChildren = new ArrayList<Node>();
 
 	/**
 	 *親ノード
 	 */
-	public Node nodeParent = null;
+	private Node nodeParent = null;
 
 	/**
 	 *ノード名
 	 */
-	public String nodeName;
+	private String nodeName;
 
 	/**
 	 *ノード番号
 	 */
-	public int nodeNumber;
+	private int nodeNumber;
+	
+	/**
+	 *このノードの深さ 
+	 */
+	private int depth; 
 
 	/**
 	 *名前と数字を受け取るコンストラクタ
@@ -38,16 +43,16 @@ public class Node
 		this.nodeName = aName;
 		this.nodeNumber = aNumber;
 	}
-
+	
 	/**
-	 *文字列を受け取るコンストラクタ
-	 *@pram aString ノードの名前と番号込みの文字列
+	 * ノード自身でノードを作成するコンストラクタ
+	 * ルートを作る際に必要
+	 * @param aNode
 	 */
-	public Node(String aNodeString)
+	public Node(Node aNode)
 	{
-		String[] strings = aNodeString.split(",.");
-		this.nodeNumber = Integer.valueOf(strings[0]);
-		this.nodeName = strings[1];
+		this.nodeNumber = aNode.getNodeNumber();
+		this.nodeName = aNode.getNodeName();
 	}
 
 	/**
@@ -86,13 +91,6 @@ public class Node
 		return this.nodeNumber;
 	}
 
-	/**
-	 *
-	 */
-	public Node getParentNode()
-	{
-		return this.nodeParent;
-	}
 	
 	
 	

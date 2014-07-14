@@ -2,54 +2,48 @@ package forest;
 
 import java.util.ArrayList;
 
+/**
+ * 木のクラス
+ * @author TOKUUME Shinya
+ *
+ */
 public class Tree
 {
+	
 	/**
-	 * 木構造にするために必要な
-	 * ノード一式
+	 * この木のルート(根)
 	 */
-	ArrayList<Node> nodes;
-	/**
-	 * 木構造にするために必要な
-	 * 枝一式
-	 */
-	ArrayList<Branch> branches;
+	private Root aRoot;
+	
+	private ArrayList<Branch> branches = new ArrayList<Branch>();
+	
+	
 	/**
 	 * コンストラクタ
-	 * @param aCollection
-	 * @param branches
+	 * @param aRoot この木のルート(根)
 	 */
-	public Tree(ArrayList<Node> nodes,ArrayList<Branch> branches)
+	public Tree(Root aRoot)
 	{
-		this.nodes = nodes;
-		this.branches = branches;
-		linkedNode();
+		this.aRoot = aRoot;
 	}
+
 	/**
-	 * ブランチの情報からノードの情報を入れる。
+	 * ルートのゲッター
+	 * @return aRoot
 	 */
-	public void linkedNode()
+	public Root getRoot()
 	{
-		for(Branch aBranch : branches)
-		{
-			Node aChildNode = nodes.get(aBranch.getChildNumber());
-			Node aParentNode = nodes.get(aBranch.getParentNumber());
-			aChildNode.addParent(aParentNode);
-			aParentNode.addChild(aChildNode);
-		}
+		return aRoot;
 	}
-
-	public void createTree()
+	
+	
+	/**
+	 * この木構造を枝から形成していく
+	 * @param aBranch 枝の情報
+	 */
+	public void createTree(Branch aBranch)
 	{
-		ArrayList<Node> aRoot = new ArrayList<Node>();
-
-		for(Node aNode : nodes)
-		{
-			if(aNode.getParentNode() == null)
-			{
-				aRoot.add(aNode);
-				System.out.println(aNode.getNodeName());
-			}
-		}
+		
 	}
+	
 }

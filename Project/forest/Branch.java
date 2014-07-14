@@ -1,46 +1,50 @@
 package forest;
 
+
+/**
+ * 枝クラス
+ * @author TOKUUME Shinya
+ */
 public class Branch
 {
 	/**
 	 * 親のノード番号
 	 */
-	int parentNumber;
+	private int numberParent;
 
 	/**
 	 * 子のノード番号
 	 */
-	int childNumber;
+	private int numberChild;
 
 	/**
-	 * ブランチの情報を受取代入
-	 *スプリットで分ける。
-	 * @param aString 枝の番号の情報
+	 * コンスラクト
+	 * 
+	 * @param numberParent
+	 * @param numberChild
 	 */
-	public Branch(String aString)
+	public Branch(int numberParent,int numberChild)
 	{
-		String[] branchInfo = new String[2];
-		branchInfo = aString.split(",.");
-		parentNumber = Integer.valueOf(branchInfo[0]);
-		childNumber = Integer.valueOf(branchInfo[1]);
+		this.numberParent = numberParent;
+		this.numberChild = numberChild;
 	}
 
 	/**
 	 *親のノード番号をかえす
-	 * @return parentNumber
+	 * @return numberParent
 	 */
 	public int getParentNumber()
 	{
-		return parentNumber-1;
+		return this.numberParent;
 	}
 
 	/**
 	 * 子のノード番号をかえす
-	 * @return childNumber
+	 * @return numberChild
 	 */
 	public int getChildNumber()
 	{
-		return childNumber-1;
+		return this.numberChild;
 	}
 
 }
