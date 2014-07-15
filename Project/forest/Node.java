@@ -2,6 +2,8 @@ package forest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+
 /**
  *木構造に必要なノードのオブジェクト
  *@author TOKUUME Shinya
@@ -11,7 +13,7 @@ public class Node
 	/**
 	 *子ノード
 	 */
-	private List<Node> nodeChildren = new ArrayList<Node>();
+	private HashMap<Integer,Node> nodeChildren = new HashMap<Integer,Node>();
 
 	/**
 	 *親ノード
@@ -61,7 +63,7 @@ public class Node
 	 */
 	public void addChild(Node aChild)
 	{
-		this.nodeChildren.add(aChild);
+		this.nodeChildren.put(aChild.getNodeNumber(),aChild);
 	}
 
 	/**
@@ -72,6 +74,23 @@ public class Node
 	public void addParent(Node aParent)
 	{
 		this.nodeParent = aParent;
+	}
+	/**
+	 *親ノードの返答
+	 *
+	 */
+	public Node getParentNode()
+	{
+		return this.nodeParent;
+	}
+
+	/**
+	 *
+	 *子ノードの返答
+	 */
+	public HashMap<Integer,Node> getChildlenNode()
+	{
+		return this.nodeChildren;
 	}
 
 	/**

@@ -10,34 +10,41 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.FileReader;
 import java.lang.NullPointerException;
+import java.util.HashMap;
 
 
 
 public class ForestExample extends Object
 {
+	
+	public static HashMap<Integer,Node> nodes = new HashMap<Integer,Node>();
+	
+	public static ArrayList<Branch> branches = new ArrayList<Branch>();
+	
+	public static ArrayList<Root> roots = new ArrayList<Root>();
+	
 	/**
 	 * クラス群を実行する
 	 * @param arguments
 	 */
 	public static void main(String[] arguments)
 	{
-		ArrayList<Node> nodes = new ArrayList<Node>();
-		ArrayList<Branch> branches = new ArrayList<Branch>();
-		ArrayList<Root> roots = new ArrayList<Root>();
-		ArrayList<String> texts = ForestExample.loadFile();
-		//ファイルからテキスト群を読み込み
 		
-		//読み込んだテキストからノード生成
-		nodes = ForestExample.loadNode(texts);
+		
+		//ファイルからテキスト群を読み込み
+		ArrayList<String> texts = ForestExample.loadFile();
 		//読み込んだテキストからブランチを生成
 		branches = ForestExample.loadBranch(texts);
+		//読み込んだテキストからノード生成
+		nodes = ForestExample.loadNode(texts,branches);
 		//ルートの設定
-		roots = ForestExample.loadRoot(texts,nodes);
+		roots = ForestExample.loadRoot(nodes);
+		//ツリー
+		ArrayList<Tree> trees = new ArrayList<Tree>();
 		for(Root aRoot : roots)
 		{
-			System.out.println(aRoot.getNodeNumber());
+			trees.add(new Tree(aRoot));
 		}
-		
 		
 		
 		
@@ -107,6 +114,7 @@ public class ForestExample extends Object
 		}
 		return texts;
 	}
+	
 	/**
 	 * 枝の情報を読み込む
 	 * ArrayListを返した方がいいと思われ
@@ -151,50 +159,18 @@ public class ForestExample extends Object
 	 * @param texts
 	 * @return
 	 */
-	private static ArrayList<Root> loadRoot(ArrayList<String> texts,ArrayList<Node> nodes)
+	private static ArrayList<Root> loadRoot(HashMap<Integer,Node> nodes)
 	{
-		ArrayList<String> strings = new ArrayList<String>();
-		ArrayList<Node> candidacyNodes = new ArrayList<Node>();
 		ArrayList<Root> roots = new ArrayList<Root>();
-		for(String aString : texts)
+		
+		for(Node aNode : nodes.values())
 		{
-			if(aString.matches("^[A-Za-z1-9].*[^:]$"))
+			if(aNode.getParentNode() == null)
 			{
-				strings.add(aString);
-			}
-			else if(aString.equals("nodes:"))
-			{
-				break;
+				roots.add(new Root(aNode));
 			}
 		}
-		for(String aString : strings)
-		{
-			for(Node aNode : nodes)
-			{
-				if(aString.equals(aNode.getNodeName()) && candidacyNodes.isEmpty())
-				{
-					candidacyNodes.add(new Node(aNode));
-				}
-				else if(aString.equals(aNode.getNodeName()) && ))
-				{
-					candidacyNodes.add(new Node(aNode));
-
-				}
-				else if(candidacyNodes.contains(aNode))
-				{
-					System.out.println("NodeName:"+aNode.getNodeName()+"NodeNumber"+aNode.getNodeNumber());
-				}
-			}
-			
-		}
-		for(int aNumber: candidacyNodes)
-		{
-			roots.add(new Root(aNode));
-		}
-
-
 		return roots;
-
 	}
 	
 	/**
@@ -202,10 +178,10 @@ public class ForestExample extends Object
 	 * @param texts
 	 * @return
 	 */
-	private static ArrayList<Node> loadNode(ArrayList<String> texts)
+	private static HashMap<Integer,Node> loadNode(ArrayList<String> texts,ArrayList<Branch> branches)
 	{
 		ArrayList<String> strings = new ArrayList<String>();
-		ArrayList<Node> nodes = new ArrayList<Node>();
+		HashMap<Integer,Node> nodes = new HashMap<Integer,Node>();
 		int startLine = 0;
 		for(int lineNumber = 0;;lineNumber++){
 			String aString = texts.get(lineNumber);
@@ -222,13 +198,28 @@ public class ForestExample extends Object
 				strings.add(aString);
 			}
 		}
-
 		for(String aString : strings)
 		{
 			String[] nodeStrings = aString.split(",.");
 			Node aNode = new Node(nodeStrings[1],Integer.parseInt(nodeStrings[0]));
-			nodes.add(aNode);
+			nodes.put(Integer.parseInt(nodeStrings[0]),aNode);
 		}
+		for(Branch aBranch : branches)
+		{
+			Node aParentNode = nodes.get(aBranch.getParentNumber());
+			Node aChildNode = nodes.get(aBranch.getChildNumber());
+			
+			aParentNode.addChild(nodes.get(aBranch.getChildNumber()));
+			aChildNode.addParent(nodes.get(aBranch.getParentNumber()));
+			
+			nodes.remove(aBranch.getParentNumber());
+			nodes.put(aBranch.getParentNumber(),aParentNode);
+
+			nodes.remove(aBranch.getChildNumber());
+			nodes.put(aBranch.getChildNumber(),aChildNode);
+			
+		}
+		
 		return nodes;
 	}
 
