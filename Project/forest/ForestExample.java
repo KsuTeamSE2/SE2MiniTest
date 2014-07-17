@@ -41,12 +41,24 @@ public class ForestExample extends Object
 		roots = ForestExample.loadRoot(nodes);
 		//ツリー
 		ArrayList<Tree> trees = new ArrayList<Tree>();
+
+
 		for(Root aRoot : roots)
 		{
 			trees.add(new Tree(aRoot));
 		}
+		for(Tree aTree : trees)
+		{
+			aTree.createTreeRoot();
+		}
 		
-		
+		for(Tree aTree : trees)
+		{
+			for(Node aNode : aTree.getNodes().values())
+			{
+				System.out.println("NodeNo."+aNode.getNodeNumber()+"NodeDepth"+aNode.getNodeDepth());
+			}
+		}
 		
 	}
 	/**
@@ -165,7 +177,7 @@ public class ForestExample extends Object
 		
 		for(Node aNode : nodes.values())
 		{
-			if(aNode.getParentNode() == null)
+			if(aNode.getParentNode().isEmpty())
 			{
 				roots.add(new Root(aNode));
 			}
@@ -181,7 +193,6 @@ public class ForestExample extends Object
 	private static HashMap<Integer,Node> loadNode(ArrayList<String> texts,ArrayList<Branch> branches)
 	{
 		ArrayList<String> strings = new ArrayList<String>();
-		HashMap<Integer,Node> nodes = new HashMap<Integer,Node>();
 		int startLine = 0;
 		for(int lineNumber = 0;;lineNumber++){
 			String aString = texts.get(lineNumber);
@@ -212,10 +223,8 @@ public class ForestExample extends Object
 			aParentNode.addChild(nodes.get(aBranch.getChildNumber()));
 			aChildNode.addParent(nodes.get(aBranch.getParentNumber()));
 			
-			nodes.remove(aBranch.getParentNumber());
+			
 			nodes.put(aBranch.getParentNumber(),aParentNode);
-
-			nodes.remove(aBranch.getChildNumber());
 			nodes.put(aBranch.getChildNumber(),aChildNode);
 			
 		}

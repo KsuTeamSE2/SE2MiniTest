@@ -18,7 +18,7 @@ public class Node
 	/**
 	 *親ノード
 	 */
-	private Node nodeParent = null;
+	private HashMap<Integer,Node> nodeParent = new HashMap<Integer,Node>();
 
 	/**
 	 *ノード名
@@ -33,7 +33,7 @@ public class Node
 	/**
 	 *このノードの深さ 
 	 */
-	private int depth; 
+	private  int depth = 0;
 
 	/**
 	 *名前と数字を受け取るコンストラクタ
@@ -73,13 +73,13 @@ public class Node
 	 */
 	public void addParent(Node aParent)
 	{
-		this.nodeParent = aParent;
+		this.nodeParent.put(aParent.getNodeNumber(),aParent);
 	}
 	/**
 	 *親ノードの返答
 	 *
 	 */
-	public Node getParentNode()
+	public HashMap<Integer,Node> getParentNode()
 	{
 		return this.nodeParent;
 	}
@@ -108,6 +108,16 @@ public class Node
 	public int getNodeNumber()
 	{
 		return this.nodeNumber;
+	}
+
+	public void setNodeDepth(int aDepth)
+	{
+		this.depth = aDepth;
+	}
+
+	public int getNodeDepth()
+	{
+		return this.depth;
 	}
 
 	

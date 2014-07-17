@@ -1,6 +1,7 @@
 package forest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * 木のクラス
@@ -14,9 +15,11 @@ public class Tree
 	 * この木のルート(根)
 	 */
 	private Root aRoot;
-	
-	private ArrayList<Branch> branches = new ArrayList<Branch>();
-	
+
+	/**
+	 *この木のルート群
+	 */
+	private HashMap<Integer,Node> nodes = new HashMap<Integer,Node>();
 	
 	/**
 	 * コンストラクタ
@@ -25,6 +28,7 @@ public class Tree
 	public Tree(Root aRoot)
 	{
 		this.aRoot = aRoot;
+		nodes.put(aRoot.getNodeNumber(),aRoot);
 	}
 
 	/**
@@ -41,9 +45,43 @@ public class Tree
 	 * この木構造を枝から形成していく
 	 * @param aBranch 枝の情報
 	 */
-	public void createTree(Branch aBranch)
+	public void createTreeRoot()
 	{
-		branches.add(aBranch);
+		if(!aRoot.getChildlenNode().isEmpty())
+		{
+			for(Node aChildNode : aRoot.getChildlenNode().values())
+			{
+
+				createTree(aChildNode);
+			}
+		}else{return;}
+	}
+
+	private void createTree(Node aNode)
+	{
+		int maxDepth = 0;
+
+		for(Node aParentNode : aNode.getParentNode().values())
+		{
+			if(aParentNode.getNodeDepth()>maxDepth)
+			{
+				maxDepth = aParentNode.getNodeDepth();
+			}
+		}
+		aNode.setNodeDepth(maxDepth);
+		nodes.put(aNode.getNodeNumber(),aNode);
+		if(!aNode.getChildlenNode().isEmpty())
+		{
+			for(Node aChildNode : aNode.getChildlenNode().values())
+			{
+				createTree(aChildNode);
+			}
+		}else{return;}
+	}
+
+	public HashMap<Integer,Node> getNodes()
+	{
+		return this.nodes;
 	}
 	
 }
