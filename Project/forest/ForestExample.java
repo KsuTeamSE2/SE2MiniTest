@@ -17,11 +17,13 @@ import java.util.HashMap;
 public class ForestExample extends Object
 {
 	
-	public static HashMap<Integer,Node> nodes = new HashMap<Integer,Node>();
-	
-	public static ArrayList<Branch> branches = new ArrayList<Branch>();
-	
-	public static ArrayList<Root> roots = new ArrayList<Root>();
+    public static HashMap<Integer,Node> nodes = new HashMap<Integer,Node>();
+    
+    public static ArrayList<Branch> branches = new ArrayList<Branch>();
+    
+    public static ArrayList<Root> roots = new ArrayList<Root>();
+    
+    public static Forest aForest = new Forest();
 	
 	/**
 	 * クラス群を実行する
@@ -42,24 +44,22 @@ public class ForestExample extends Object
 		//ツリー
 		ArrayList<Tree> trees = new ArrayList<Tree>();
 
-
 		for(Root aRoot : roots)
 		{
 			trees.add(new Tree(aRoot));
 		}
 		for(Tree aTree : trees)
 		{
-			aTree.createTreeRoot();
-		}
-		
-		for(Tree aTree : trees)
-		{
-			for(Node aNode : aTree.getNodes().values())
+		    HashMap<Integer,Node> childlen = aTree.createTreeRoot();
+		    for(Node aNode : childlen.values())
 			{
-				System.out.println("NodeNo."+aNode.getNodeNumber()+"NodeDepth"+aNode.getNodeDepth());
+			    ForestExample.createTree(aNode,aTree);
 			}
 		}
-		
+		for(Tree aTree : trees)
+		    {
+			aForest.addTree(aTree);
+		    }
 	}
 	/**
 	 * mvcを開く
@@ -231,5 +231,18 @@ public class ForestExample extends Object
 		
 		return nodes;
 	}
+
+    private static void createTree(Node aNode,Tree aTree)
+    {
+	aNode.setNodeDepth(aTree.serchNodeDepth(aNode));
+	nodes.put(aNode.getNodeNumber(),aNode);
+	if(aNode.getChildlenNode() != null)
+	    {
+		for(Node aChildNode : aNode.getChildlenNode().values())
+		    {
+			createTree(aChildNode,aTree);
+		    }
+	    }else{return;}	
+    }
 
 }

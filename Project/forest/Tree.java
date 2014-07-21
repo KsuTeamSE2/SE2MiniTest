@@ -45,43 +45,46 @@ public class Tree
 	 * この木構造を枝から形成していく
 	 * @param aBranch 枝の情報
 	 */
-	public void createTreeRoot()
-	{
-		if(!aRoot.getChildlenNode().isEmpty())
-		{
-			for(Node aChildNode : aRoot.getChildlenNode().values())
-			{
+    public HashMap<Integer,Node> createTreeRoot()
+    {
+	if(!aRoot.getChildlenNode().isEmpty())
+	    {
+		return aRoot.getChildlenNode();
+	    }else{return null;}
+    }
 
-				createTree(aChildNode);
-			}
-		}else{return;}
-	}
-
-	private void createTree(Node aNode)
-	{
-		int maxDepth = 0;
-
-		for(Node aParentNode : aNode.getParentNode().values())
-		{
-			if(aParentNode.getNodeDepth()>maxDepth)
-			{
-				maxDepth = aParentNode.getNodeDepth();
-			}
-		}
-		aNode.setNodeDepth(maxDepth);
-		nodes.put(aNode.getNodeNumber(),aNode);
-		if(!aNode.getChildlenNode().isEmpty())
-		{
-			for(Node aChildNode : aNode.getChildlenNode().values())
-			{
-				createTree(aChildNode);
-			}
-		}else{return;}
-	}
-
-	public HashMap<Integer,Node> getNodes()
-	{
-		return this.nodes;
-	}
+    public int serchNodeDepth(Node aNode)
+    {
+	int maxDepth = 0;
 	
+	for(Node aParentNode : aNode.getParentNode().values())
+	    {
+		if(aParentNode.getNodeDepth()>maxDepth)
+		    {
+			maxDepth = aParentNode.getNodeDepth();
+		    }
+	    }
+	aNode.setNodeDepth(maxDepth+1);
+	nodes.put(aNode.getNodeNumber(),aNode);
+	return aNode.getNodeDepth();
+	/*
+	if(!aNode.getChildlenNode().isEmpty())
+	    {
+		for(Node aChildNode : aNode.getChildlenNode().values())
+		    {
+			return aChildNode.getNodeDepth();
+		    }
+	    }else{return -1;}
+	    */
+    }
+    
+    public void getNodes()
+    {
+	for(Node aNode : nodes.values())
+	    {
+		System.out.println("No."+aNode.getNodeNumber()+"Depth"+aNode.getNodeDepth());
+	    }	
+	//return this.nodes;
+    }
+    
 }
