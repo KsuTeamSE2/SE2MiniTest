@@ -3,12 +3,18 @@ package forest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
+import javax.swing.border.LineBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
+
+
 
 /**
  *木構造に必要なノードのオブジェクト
  *@author TOKUUME Shinya
  */
-public class Node
+public class Node extends JLabel
 {
 	/**
 	 *子ノード
@@ -36,6 +42,11 @@ public class Node
 	private  int depth = 0;
 
 	/**
+	 *このノードを探索を行ったか
+	 */
+	private boolean visit = false;
+
+	/**
 	 *名前と数字を受け取るコンストラクタ
 	 *@param aName ノードの名前
 	 *@param aNumber ノードの整理番号
@@ -44,17 +55,26 @@ public class Node
 	{
 		this.nodeName = aName;
 		this.nodeNumber = aNumber;
-	}
+
+		this.setFont(new Font("Arial", Font.PLAIN, 12));
+		this.setText(this.nodeName);
+		this.setBorder(new LineBorder(Color.black, 1));
+		this.setSize(this.getPreferredSize());	}
 	
 	/**
 	 * ノード自身でノードを作成するコンストラクタ
 	 * ルートを作る際に必要
-	 * @param aNode
+	 * @param aNode ノード自身
 	 */
 	public Node(Node aNode)
 	{
 		this.nodeNumber = aNode.getNodeNumber();
 		this.nodeName = aNode.getNodeName();
+
+		this.setFont(new Font("Arial", Font.PLAIN, 12));
+		this.setText(aNode.getNodeName());
+		this.setBorder(new LineBorder(Color.black, 1));
+		this.setSize(this.getPreferredSize());
 	}
 
 	/**
@@ -77,7 +97,7 @@ public class Node
 	}
 	/**
 	 *親ノードの返答
-	 *
+	 *@return this.nodeParent
 	 */
 	public HashMap<Integer,Node> getParentNode()
 	{
@@ -87,6 +107,7 @@ public class Node
 	/**
 	 *
 	 *子ノードの返答
+	 *@return this.nodeChildren
 	 */
 	public HashMap<Integer,Node> getChildlenNode()
 	{
@@ -110,14 +131,32 @@ public class Node
 		return this.nodeNumber;
 	}
 
+	/**
+	 *ノードの深さを設定する
+	 *@param aDepth ノードの深さ
+	 */
 	public void setNodeDepth(int aDepth)
 	{
 		this.depth = aDepth;
 	}
-
+	/**
+	 *ノードの深さを取得する
+	 *@return this.depth
+	 */
 	public int getNodeDepth()
 	{
 		return this.depth;
+	}
+	/**
+	 *ノードを探索したという印をつける
+	 */
+	public void setVisiting()
+	{
+		this.visit = true;
+	}
+	public boolean getVisting()
+	{
+		return this.visit;
 	}
 
 	

@@ -20,8 +20,8 @@ public class Branch
 	/**
 	 * コンスラクト
 	 * 
-	 * @param numberParent
-	 * @param numberChild
+	 * @param numberParent 親ノードの番号
+	 * @param numberChild 子ノードの番号
 	 */
 	public Branch(int numberParent,int numberChild)
 	{

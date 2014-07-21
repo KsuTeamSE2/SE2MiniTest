@@ -7,6 +7,12 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ *情報を読取るためのクラス
+ *現在不要になりました。
+ *@author TOKUUME Shinya
+ */
 public class Load
 {
 	/**
