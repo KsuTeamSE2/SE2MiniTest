@@ -35,6 +35,6 @@ public class Forest
 	 */
 	public void addTree(Tree aTree)
 	{
-		
+	    trees.add(aTree);
 	}
 }
