@@ -18,6 +18,7 @@ public class ForestView extends View
 	/**
 	 * コンストラクタ
 	 * @param aModel モデル
+	 * @author YONEDA shigeki
 	 */
 	public ForestView(ForestModel aModel,ForestController aController)
 	{
