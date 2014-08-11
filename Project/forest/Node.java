@@ -1,10 +1,10 @@
 package forest;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.HashMap;
+
 import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
+
 import java.awt.Font;
 import java.awt.Color;
 
@@ -109,7 +109,7 @@ public class Node extends JLabel
 	 *子ノードの返答
 	 *@return this.nodeChildren
 	 */
-	public HashMap<Integer,Node> getChildlenNode()
+	public HashMap<Integer,Node> getChildrenNode()
 	{
 		return this.nodeChildren;
 	}
@@ -154,7 +154,7 @@ public class Node extends JLabel
 	{
 		this.visit = true;
 	}
-	public boolean getVisting()
+	public boolean getVisiting()
 	{
 		return this.visit;
 	}

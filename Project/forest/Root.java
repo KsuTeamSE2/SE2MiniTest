@@ -14,7 +14,7 @@ public class Root extends Node
     public Root(Node aNode)
     {
 	super(aNode);
-	for(Node aChildren : aNode.getChildlenNode().values())
+	for(Node aChildren : aNode.getChildrenNode().values())
 	    {
 		this.addChild(aChildren);
 	    }

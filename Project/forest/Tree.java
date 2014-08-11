@@ -1,6 +1,5 @@
 package forest;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -47,9 +46,9 @@ public class Tree
 	 */
 	public HashMap<Integer,Node> createTreeRoot()
 	{
-		if(!aRoot.getChildlenNode().isEmpty())
+		if(!aRoot.getChildrenNode().isEmpty())
 		{
-			return aRoot.getChildlenNode();
+			return aRoot.getChildrenNode();
 		}else{return null;}
 	}
 

@@ -5,20 +5,21 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
 import mvc.View;
 
-
+/**
+ * ビューモデル
+ * @author YONEDA shigeki
+ *
+ */
 public class ForestView extends View
 {
 	/**
 	 * コンストラクタ
-	 * @param aModel モデル
-	 * @author YONEDA shigeki
 	 */
 	public ForestView(ForestModel aModel,ForestController aController)
 	{
@@ -54,7 +55,7 @@ public class ForestView extends View
 				Point aPoint = aNode.getLocation();
 				Dimension aDimension = aNode.getSize();
 				aGraphicsBuffer.setFont(aNode.getFont());
-				aGraphicsBuffer.drawString(aNode.getNodeName(), aPoint.x+Constans.WIDTH_SPACE, aPoint.y+aNode.getSize().height-Constans.HEIGHT);
+				aGraphicsBuffer.drawString(aNode.getNodeName(), aPoint.x, aPoint.y+aNode.getSize().height-Constans.HEIGHT);
 				aGraphicsBuffer.drawRect(aPoint.x,aPoint.y, aDimension.width, aDimension.height);
 			}
 
@@ -75,14 +76,6 @@ public class ForestView extends View
 		Point aPoint = this.scrollAmount();
 		aGraphics.drawImage(picture,0-aPoint.x,0-aPoint.y,this);
 	}
-
-	/**
-	 * 
-	 */
-	public void update(){
-
-	}
-
 
 	/**
 	 * 

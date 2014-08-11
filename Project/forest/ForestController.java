@@ -7,7 +7,8 @@ import mvc.Controller;
 public class ForestController extends Controller
 {
 	/**
-	 * 
+	 * コントローラー
+	 * @author YONEDA shigeki
 	 */
 	public ForestController()
 	{

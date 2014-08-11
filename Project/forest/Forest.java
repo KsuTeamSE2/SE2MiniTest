@@ -1,7 +1,6 @@
 package forest;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 木構造をまとめた森クラス

@@ -2,16 +2,11 @@ package forest;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Panel;
 import java.awt.Point;
 import java.io.File;
-
-import javax.swing.JFileChooser;
 
 import java.io.FileNotFoundException;
 import java.io.BufferedReader;
@@ -44,6 +39,7 @@ public class ForestExample extends Object
 	 *森の情報
 	 */
 	public static Forest aForest = new Forest();
+
 
 	/**
 	 * クラス群を実行する
@@ -82,21 +78,20 @@ public class ForestExample extends Object
 			aForest.addTree(aTree);
 		}
 		ForestModel aModel = new ForestModel(aForest,branches);
+		aModel=new ForestModel(aForest,branches);
 		ForestView aView = new ForestView(aModel, new ForestController());
-//		JPanel aPanel = new JPanel();
-//		aPanel.add(aView);
-		open(aView);
+		open(aView,aModel);
 	}
+
 	/**
 	 * mvcを開く
 	 * @param aPanel JPanel
 	 */
-	public static void open(ForestView aView){
+	public static void open(ForestView aView, ForestModel aModel){
 			JFrame aWindow = new JFrame("Forest");
 			aWindow.getContentPane().add(aView);
 			aWindow.setLayout(null);
 			aWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			aWindow.addNotify();
 			int titleBarHeight = aWindow.getInsets().top;
 			aWindow.getContentPane().setBackground(new Color(255,255,255));
 			aWindow.setMinimumSize(new Dimension(Constans.WINDOW_WIDTH, Constans.WINDOW_HEIGHT + titleBarHeight));
@@ -105,6 +100,9 @@ public class ForestExample extends Object
 			aWindow.setLocation(0, 0);
 			aWindow.setVisible(true);
 			aWindow.toFront();
+			for(Node aRoot : roots){
+				aModel.arrange(aRoot,new Point(0,ForestModel.underNodeY));
+			}
 			return;
 	}
 
@@ -299,9 +297,9 @@ public class ForestExample extends Object
 	{
 		aNode.setNodeDepth(aTree.serchNodeDepth(aNode));
 		nodes.put(aNode.getNodeNumber(),aNode);
-		if(aNode.getChildlenNode() != null)
+		if(aNode.getChildrenNode() != null)
 		{
-			for(Node aChildNode : aNode.getChildlenNode().values())
+			for(Node aChildNode : aNode.getChildrenNode().values())
 			{
 				createTree(aChildNode,aTree);
 			}
