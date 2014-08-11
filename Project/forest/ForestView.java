@@ -43,7 +43,9 @@ public class ForestView extends View
 		aGraphicsBuffer.setColor(Color.black);
 
 		ForestModel aForestModel = (ForestModel)(this.model);
-		ArrayList<Tree> trees = aForestModel.getForest().getTrees();
+		Forest aForest= aForestModel.getForest();
+		ArrayList<Tree> trees = aForest.getTrees();
+//		ArrayList<Branch> branches = aForestModel.getForest()
 		Iterator iterator = trees.iterator();
 		while(iterator.hasNext()){
 			Tree aTree = (Tree)iterator.next();
