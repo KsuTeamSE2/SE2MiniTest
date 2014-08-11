@@ -8,6 +8,8 @@ import java.awt.image.BufferedImage;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+
 import mvc.View;
 
 
@@ -23,11 +25,11 @@ public class ForestView extends View
 		this.model = aModel;
 		this.setSize(1500,1500);
 	}
-	
+
 	/**
 	 * 
 	 */
-	public void paintComponet()
+	public void paintComponent(Graphics aGraphics)
 	{
 		int width = this.getWidth();
 		int height = this.getHeight();
@@ -41,25 +43,45 @@ public class ForestView extends View
 		aGraphicsBuffer.setColor(Color.black);
 
 		ForestModel aForestModel = (ForestModel)(this.model);
+		ArrayList<Tree> trees = aForestModel.getForest().getTrees();
+		Iterator iterator = trees.iterator();
+		while(iterator.hasNext()){
+			Tree aTree = (Tree)iterator.next();
+			HashMap<Integer,Node> nodes=aTree.getNodes();
+			for(Node aNode:nodes.values()){
+				Point aPoint = aNode.getLocation();
+				Dimension aDimension = aNode.getSize();
+				aGraphicsBuffer.setFont(aNode.getFont());
+				aGraphicsBuffer.drawString(aNode.getNodeName(), aPoint.x+10, aPoint.y+10);
+				aGraphicsBuffer.drawRect(aPoint.x,aPoint.y, aDimension.width, aDimension.height);
+			}
+		}
+//		aGraphicsBuffer.drawString("watewta",100,100);
 
+		aGraphics.drawImage(picture,0,0,this);
+	}
+
+	/**
+	 * 
+	 */
+	public void update(){
 
 	}
-	
-	/**
-	 * 
-	 */
-	public void update(){}
-	
-	
+
+
 	/**
 	 * 
 	 * @return Point
 	 */
-	public Point getPoint(){return null;}
+	public Point getPoint(){
+		return null;
+	}
 
 	/**
 	 * @return Point
 	 */
-	public Point getNewPoint(){return null;}
+	public Point getNewPoint(){
+		return null;
+	}
 }
 

@@ -1,10 +1,18 @@
 package forest;
 
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import java.util.ArrayList;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Panel;
+import java.awt.Point;
 import java.io.File;
+
 import javax.swing.JFileChooser;
+
 import java.io.FileNotFoundException;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -43,8 +51,6 @@ public class ForestExample extends Object
 	 */
 	public static void main(String[] arguments)
 	{
-
-
 		//ファイルからテキスト群を読み込み
 		ArrayList<String> texts = ForestExample.loadFile();
 		//読み込んだテキストからブランチを生成
@@ -75,12 +81,33 @@ public class ForestExample extends Object
 		{
 			aForest.addTree(aTree);
 		}
+		ForestModel aModel = new ForestModel(aForest);
+		ForestView aView = new ForestView(aModel, new ForestController());
+//		JPanel aPanel = new JPanel();
+//		aPanel.add(aView);
+		open(aView);
 	}
 	/**
 	 * mvcを開く
 	 * @param aPanel JPanel
 	 */
-	public void open(Panel aPanel){}
+	public static void open(ForestView aView){
+			JFrame aWindow = new JFrame("Forest");
+			aWindow.getContentPane().add(aView);
+			aWindow.setLayout(null);
+			aWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			aWindow.addNotify();
+			int titleBarHeight = aWindow.getInsets().top;
+			aWindow.getContentPane().setBackground(new Color(255,255,255));
+			aWindow.setMinimumSize(new Dimension(Constans.WINDOW_WIDTH, Constans.WINDOW_HEIGHT + titleBarHeight));
+			aWindow.setResizable(true);
+			aWindow.setSize(800, 400 + titleBarHeight);
+			aWindow.setLocation(0, 0);
+			aWindow.setVisible(true);
+			aWindow.toFront();
+			//displayPoint = new Point(displayPoint.x + offsetPoint.x, displayPoint.y + offsetPoint.y);
+			return;
+	}
 
 	/**
 	 * テキストファイルを読み込む
