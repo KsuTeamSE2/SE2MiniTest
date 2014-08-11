@@ -45,7 +45,6 @@ public class ForestView extends View
 		ForestModel aForestModel = (ForestModel)(this.model);
 		Forest aForest= aForestModel.getForest();
 		ArrayList<Tree> trees = aForest.getTrees();
-//		ArrayList<Branch> branches = aForestModel.getForest()
 		Iterator iterator = trees.iterator();
 		while(iterator.hasNext()){
 			Tree aTree = (Tree)iterator.next();
@@ -54,13 +53,13 @@ public class ForestView extends View
 				Point aPoint = aNode.getLocation();
 				Dimension aDimension = aNode.getSize();
 				aGraphicsBuffer.setFont(aNode.getFont());
-				aGraphicsBuffer.drawString(aNode.getNodeName(), aPoint.x+10, aPoint.y+10);
+				System.out.println(aPoint.y);
+				aGraphicsBuffer.drawString(aNode.getNodeName(), aPoint.x+Constans.WIDTH_SPACE, aPoint.y+aNode.getSize().height-Constans.HEIGHT);
 				aGraphicsBuffer.drawRect(aPoint.x,aPoint.y, aDimension.width, aDimension.height);
 			}
 		}
-//		aGraphicsBuffer.drawString("watewta",100,100);
-
-		aGraphics.drawImage(picture,0,0,this);
+		Point aPoint = this.scrollAmount();
+		aGraphics.drawImage(picture,0-aPoint.x,0-aPoint.y,this);
 	}
 
 	/**

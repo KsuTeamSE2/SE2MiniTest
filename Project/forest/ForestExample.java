@@ -105,7 +105,6 @@ public class ForestExample extends Object
 			aWindow.setLocation(0, 0);
 			aWindow.setVisible(true);
 			aWindow.toFront();
-			//displayPoint = new Point(displayPoint.x + offsetPoint.x, displayPoint.y + offsetPoint.y);
 			return;
 	}
 
@@ -263,14 +262,19 @@ public class ForestExample extends Object
 				strings.add(aString);
 			}
 		}
+		int y=0;
 		for(String aString : strings)
 		{
 			String[] nodeStrings = aString.split(",.");
 			Node aNode = new Node(nodeStrings[1],Integer.parseInt(nodeStrings[0]));
+			aNode.setLocation(0,y);
+			y+=aNode.getSize().height+Constans.HEIGHT_SPACE;
 			nodes.put(Integer.parseInt(nodeStrings[0]),aNode);
+			
 		}
 		for(Branch aBranch : branches)
 		{
+			
 			Node aParentNode = nodes.get(aBranch.getParentNumber());
 			Node aChildNode = nodes.get(aBranch.getChildNumber());
 

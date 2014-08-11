@@ -30,7 +30,6 @@ public class ForestController extends Controller
 	{
 		super.mouseDragged(aMouseEvent);
 		return;
-		
 	}
 
 }
