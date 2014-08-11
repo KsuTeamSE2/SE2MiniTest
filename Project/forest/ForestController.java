@@ -4,11 +4,15 @@ import java.awt.event.MouseEvent;
 import java.awt.Point;
 import mvc.Controller;
 
+
+/**
+ * コントローラー
+ * @author YONEDA SHIGEKI
+ */
 public class ForestController extends Controller
 {
 	/**
-	 * コントローラー
-	 * @author YONEDA shigeki
+	 * コンストラクタ
 	 */
 	public ForestController()
 	{
@@ -16,7 +20,7 @@ public class ForestController extends Controller
 	}
 	
 	/**
-	 * 
+	 * マウスをクリックした時のデータをモデルに渡す
 	 * @param aMouseEvent マウスのイベント
 	 */
 	public void mouseClicked(MouseEvent aMouseEvent)

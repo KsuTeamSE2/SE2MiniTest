@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 /**
  * 木のクラス
- * @author TOKUUME Shinya
+ * @author TOKUUME SHINYA
  *
  */
 public class Tree

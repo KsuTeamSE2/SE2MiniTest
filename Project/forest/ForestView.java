@@ -13,7 +13,7 @@ import mvc.View;
 
 /**
  * ビューモデル
- * @author YONEDA shigeki
+ * @author YONEDA SHIGEKI
  *
  */
 public class ForestView extends View
@@ -29,7 +29,7 @@ public class ForestView extends View
 	}
 
 	/**
-	 * 
+	 * 描画部分
 	 */
 	public void paintComponent(Graphics aGraphics)
 	{
@@ -75,21 +75,6 @@ public class ForestView extends View
 		}
 		Point aPoint = this.scrollAmount();
 		aGraphics.drawImage(picture,0-aPoint.x,0-aPoint.y,this);
-	}
-
-	/**
-	 * 
-	 * @return Point
-	 */
-	public Point getPoint(){
-		return null;
-	}
-
-	/**
-	 * @return Point
-	 */
-	public Point getNewPoint(){
-		return null;
 	}
 }
 

@@ -12,7 +12,7 @@ import java.awt.Color;
 
 /**
  *木構造に必要なノードのオブジェクト
- *@author TOKUUME Shinya
+ *@author TOKUUME SHINYA
  */
 public class Node extends JLabel
 {

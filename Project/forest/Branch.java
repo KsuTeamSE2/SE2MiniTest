@@ -3,7 +3,7 @@ package forest;
 
 /**
  * 枝クラス
- * @author TOKUUME Shinya
+ * @author TOKUUME SHINYA
  */
 public class Branch
 {

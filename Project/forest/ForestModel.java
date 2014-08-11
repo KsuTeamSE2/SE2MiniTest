@@ -5,13 +5,11 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-
 import mvc.Model;
 
 /**
  * フォレストモデル
- * @author YONEDA shigeki
- *
+ * @author YONEDA SHIGEKI
  */
 public class ForestModel extends Model
 {
@@ -27,21 +25,42 @@ public class ForestModel extends Model
 	 */
 	public static int underNodeY;
 	
+	/**
+	 * ブランチを束縛する。
+	 */
 	private ArrayList<Branch> branches = new ArrayList<Branch>();
 
+	/**
+	 * コンストラクタ
+	 * @param aForest
+	 * @param branches
+	 */
 	public ForestModel(Forest aForest,ArrayList<Branch> branches)
 	{
 		super();
 		this.aForest = aForest;
 		this.branches=branches;
-//		int y = 0;
 	}
+	
+	/**
+	 * Forestを応答する。
+	 * @return
+	 */
 	public Forest getForest(){
 		return aForest;
 	}
+	/**
+	 * Branchを応答する。
+	 * @return
+	 */
 	public ArrayList<Branch> getBranches(){
 		return branches;
 	}
+	/**
+	 * マウスをクリックした場所にノードが有るならそのノードの名前を出力する
+	 * @param aPoint
+	 * @param aMouseEvent
+	 */
 	public void mouseClicked(Point aPoint , MouseEvent aMouseEvent)
 	{
 		ArrayList<Tree> trees = aForest.getTrees();
@@ -53,7 +72,6 @@ public class ForestModel extends Model
 				if(aNode.getLocation().x <= aPoint.x && aNode.getLocation().x+aNode.getWidth()>=aPoint.x&&aNode.getLocation().y<=aPoint.y&&aNode.getLocation().y+aNode.getHeight()>=aPoint.y){
 					System.out.println(aNode.getNodeName());
 				}
-				
 			}
 		}
 	}

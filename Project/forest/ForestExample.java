@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 /**
  *実行を行う部分
- *@author TOKUUME Shinya and YONEDA shigeki
+ *@author TOKUUME SHINYA and YONEDA SHIGEKI
  */
 
 public class ForestExample extends Object
@@ -86,6 +86,7 @@ public class ForestExample extends Object
 	/**
 	 * mvcを開く
 	 * @param aPanel JPanel
+	 * @param aModel ForestView
 	 */
 	public static void open(ForestView aView, ForestModel aModel){
 			JFrame aWindow = new JFrame("Forest");

@@ -1,9 +1,8 @@
 package forest;
-import java.util.HashMap;
 
 /**
  *根の情報をノードから継承し作成
- *@author TOKUUME Shinya
+ *@author TOKUUME SHINYA
  */
 public class Root extends Node
 {
