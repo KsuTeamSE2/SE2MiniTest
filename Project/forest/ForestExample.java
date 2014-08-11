@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 /**
  *実行を行う部分
- *@author TOKUUME Shinya
+ *@author TOKUUME Shinya and YONEDA shigeki
  */
 
 public class ForestExample extends Object
@@ -81,7 +81,7 @@ public class ForestExample extends Object
 		{
 			aForest.addTree(aTree);
 		}
-		ForestModel aModel = new ForestModel(aForest);
+		ForestModel aModel = new ForestModel(aForest,branches);
 		ForestView aView = new ForestView(aModel, new ForestController());
 //		JPanel aPanel = new JPanel();
 //		aPanel.add(aView);

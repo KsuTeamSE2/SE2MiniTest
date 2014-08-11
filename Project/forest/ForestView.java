@@ -53,9 +53,22 @@ public class ForestView extends View
 				Point aPoint = aNode.getLocation();
 				Dimension aDimension = aNode.getSize();
 				aGraphicsBuffer.setFont(aNode.getFont());
-				System.out.println(aPoint.y);
 				aGraphicsBuffer.drawString(aNode.getNodeName(), aPoint.x+Constans.WIDTH_SPACE, aPoint.y+aNode.getSize().height-Constans.HEIGHT);
 				aGraphicsBuffer.drawRect(aPoint.x,aPoint.y, aDimension.width, aDimension.height);
+			}
+
+			ArrayList<Branch> branches = aForestModel.getBranches();
+			for(Branch aBranch : branches){
+				int aParentNumber = aBranch.getParentNumber();
+				int aChildNumber = aBranch.getChildNumber();
+				if(nodes.containsKey(aParentNumber)&&nodes.containsKey(aChildNumber)){
+					Point aParentPoint= nodes.get(aParentNumber).getLocation();
+					Dimension aParentDimension = nodes.get(aParentNumber).getSize();
+					Point aChildPoint = nodes.get(aChildNumber).getLocation();
+					Dimension aChildDimension = nodes.get(aChildNumber).getSize();
+					aGraphicsBuffer.drawLine(aParentPoint.x+aParentDimension.width, aParentPoint.y+aParentDimension.height/2, aChildPoint.x, aChildPoint.y+aChildDimension.height/2);
+				}
+
 			}
 		}
 		Point aPoint = this.scrollAmount();
