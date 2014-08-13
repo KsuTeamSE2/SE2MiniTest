@@ -249,7 +249,43 @@ th {
 <hr>
 <h2>ソフトウェア工学IIの小テスト「樹状整列」テスト結果報告書</h2>
 <div class="belt">
-<h3><a name="KanseiSaseteKudasai">完成させてください</a></h3>
+<h3>使用手順</a></h3>
+<ol>
+	<li><a href="#">forest.zip</a>のアーカイブファイルをホームディレクトリに展開する。</li>
+	
+	<li>展開して得られるforestというディレクトリへ移る</li>
+	<pre class="belt"> $cd ~/SE2MiniTest/Project/<pre>
+	<li>中身を確認する</li>
+	<pre class="belt">
+	$ls
+	Classes		Makefile	build.xml	java.hprof	JavaDoc
+	TreeText	forest		forest.mf	mvc.jar
+	</pre>
+	
+	
+	<li>makeする。
+	<pre class="belt">
+	$make
+	env LC_ALL=ja_JP.UTF-8 ant all
+	Picked up _JAVA_OPTIONS: -Dfile.encoding=UTF-8
+	Buildfile: /Users/FutureDigerati/SE2MiniTest/Project/build.xml
+
+	prepare:
+		 [echo] on 2014/08/14 at 00:51:17
+
+	compile:
+		 [echo] on 2014/08/14 at 00:51:17
+
+	jar:
+		 [echo] on 2014/08/14 at 00:51:17
+
+	all:
+		 [echo] on 2014/08/14 at 00:51:17
+
+	BUILD SUCCESSFUL
+	Total time: 0 seconds
+	
+	</pre>
 </div>
 <hr>
 <div class="right-small">Copyright 20xx Project xx, Updated: 2013/02/27 (Created: 2009/11/11)</div>
