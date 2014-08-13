@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Project" default="all" basedir=".">
+<project name="Forest" default="all" basedir=".">
 	
 	<property name="package" value="forest" />
-	<property name="mvc" value="mvc" />
-	<property name="packagenames" value="${package},${mvc}" />
+	<property name="forest" value="forest" />
+	<property name="packagenames" value="${package},${forest}" />
 	<property name="destdir" value="./Classes" />
 	<property name="docdir" value="./JavaDoc" />
 	<property name="instdir" value="./${ant.project.name}.app/Contents/Resources/Java" />
@@ -39,7 +39,7 @@
 			<compilerarg value="-Xlint:unchecked" />
 			<classpath>
 				<pathelement location="." />
-				<pathelement location="${mvc}.jar" />
+				<pathelement location="${forest}.jar" />
 			</classpath>
 		</javac>
 		<echo>on ${date} at ${time}</echo>
@@ -50,7 +50,7 @@
 			jarfile="${package}.jar"
 			basedir="${destdir}"
 			manifest="${package}.mf">
-			<zipfileset src="${mvc}.jar" />
+			<zipfileset src="${forest}.jar" />
 		</jar>
 		<echo>on ${date} at ${time}</echo>
 	</target>
@@ -79,9 +79,6 @@
 		<exec executable="chmod">
 			<arg line="755 ${instdir}/../../MacOS/applet" />
 		</exec>
-		<copy todir="${instdir}/SampleTexts">
-			<fileset dir="SampleTexts" includes="*.csv" />
-		</copy>
 		<echo>on ${date} at ${time}</echo>
 	</target>
 	
@@ -102,7 +99,7 @@
 			<bottom>${copyright}</bottom>
 			<classpath>
 				<pathelement location="." />
-				<pathelement location="${mvc}.jar" />
+				<pathelement location="${forest}.jar" />
 			</classpath>
 		</javadoc>
 		<echo>on ${date} at ${time}</echo>
